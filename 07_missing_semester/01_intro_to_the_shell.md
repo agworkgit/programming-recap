@@ -162,6 +162,7 @@
 - This is a very powerful tool, it can take regular expressions (regex) to search for patterns
 - And regex can describe very complex patterns such as 'I want you to find all the files where the first 3 characters are digits, followed by a dash, followed by another 3 characters and ending in 99'
 - `grep` can also search in directories, for example `grep -r programming .` will return the lines of files that contain the "programming" string
+- `-r` in `grep` means recursive, useful when you want to search nested directories!
 
 #### Tools that let you edit files `sed`
 
@@ -179,6 +180,7 @@
 
 - When you run `find` you tell the program the kinds of files you're looking for and it will search where you tell it to, the files that match that structure
 - Example: `find ~/Downloads -type f -name "*.zip" -mtime +30`
+- `find` is recursive by default
 - This command says: find in Downloads all items of type file (f) by name "contains .zip" modified in the last 30 days.
 - You can also run other programs on the files found with `find`
 - Example `find ~/Downloads -type f -size +100M -exec ls -lh {} \;`
@@ -186,3 +188,14 @@
 - The curly braces `{}` get replaced with all the paths found for each file.
 - Outputs: `-rw-r--r-- 1 ag ag 1.7M Aug 25 14:31 /home/ag/Downloads/data_set_ml/train/keyboard/IMG_6884.jpeg`
 - The `\;` is for when you want to give `find` more arguments, in this case it says "this is the end of the list of commands for `-exec` anything after this is a command for `find`"
+- Example `find ../ -name "*.md" -exec grep -l "let" {} \;`
+- With `-l` as an argument to `grep` this command will return all the md files paths where "let" is in the file
+
+#### If you need to parse files use `awk`
+
+- `awk` has its own programming language
+- `awk '{print $2}' data`, the `{print $2}` tells awk to run the instruction
+- Before the execution you can specify a pattern
+- `$2` says: print me every second entry on every line
+- `awk -F, '{print $2}' data` tells awk to behave like a CSV parser and split on commas
+- It's a very useful tool for pulling data out of semi-structured files easily
