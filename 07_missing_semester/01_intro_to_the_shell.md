@@ -101,3 +101,88 @@
 - `~` points you back to your `home` directory.
 - You can combine these methods to navigate the file system however you see fit.
 - **Use case:** easily moving up and down directories without having to specify the whole absolute path each time you want to move around the file system.
+
+#### Zoxide
+
+- Remembers all the paths you `cd` into and it gives you a quicker way to access arbitrary file paths.
+
+#### TAB - gives you autocomplete
+
+- If you start typing a few characters and press TAB you get autocomplete or suggestions.
+
+### What can we execute in the Shell?
+
+- What the Shell does is, take the program name we typed and goes to look for it in PATH.
+- PATH is an environment variable (set across the whole Shell) of variable to value mappings, usually names to strings and those will describe a bunch of meta information that the Shell can make use of, like `whoami`, what shell is this, what host am I running? etc...
+- `echo $PATH` will list out a sequence of paths with `:` separators, and when you try to run a program in your Shell it will walk through these folders one by one looking for a file by the name of the program and if it finds it then it will run it, else it will look in the next folder and so on...
+- `which date`, in this case `date` is a program and `which` will point the directory of the program.
+- So when we type a program's name and run it, the Shell will get pointed to the path of that program and automatically execute it, after which we get our Terminal output.
+- You could also take the path and run the program that way, but it's more convenient to just type the program name and have the Shell do the heavy lifting.
+
+#### Questions
+
+- Q: If you have multiple versions of the same program with the same name, how does Shell know which one to run?
+- A: The Shell will execute the first it finds in the PATH order.
+- You can ask the Shell with `which -a program-name` how many matching executables of that program you have.
+
+#### Listing directory contents with `ls`
+
+- `ls` will take the path of a directory and list its contents
+- If `ls` is called in the current directory it will list its contents.
+- If you want to see hidden .files you can add the flag `-a` to list them.
+
+#### Printing (reading) the contents of a file with `cat`
+
+- `cat` will take as argument a file path and print the contents of that file in the Terminal.
+
+#### Sorting with `sort`
+
+- Will take its input or a file that is specified as input, and print the lines in sorted order.
+- The precedence is: symbols, numbers, characters
+- The way it sorts is by looking at the first character it finds on a line, e.g. 3, 31, 4
+
+#### Printing only the unique values with `uniq`
+
+- Let's say you have a file with multiple entries of the same number or character
+- `uniq` will print only the unique instances it finds
+- It only eliminates consecutive lines with the same value! If a value that is similar to others is sandwiched between two different values it will not pick up on that (so it's not that smart).
+- You can also do this type of sorting with `sort -u filename`!
+
+#### Printing only the first few lines at the top of a file with `head`
+
+- `head` takes a `-n` argument where `n` is the number of lines you want printed.
+
+#### Printing only the first new lines at the bottom of a file with `tail`
+
+- `tail` args are the same as `head`
+
+#### Searching for patterns inside files with `grep`
+
+- `grep` takes as arguments a pattern/value and a file or list of files, and it will print the lines that match that you give it
+- This is a very powerful tool, it can take regular expressions (regex) to search for patterns
+- And regex can describe very complex patterns such as 'I want you to find all the files where the first 3 characters are digits, followed by a dash, followed by another 3 characters and ending in 99'
+- `grep` can also search in directories, for example `grep -r programming .` will return the lines of files that contain the "programming" string
+
+#### Tools that let you edit files `sed`
+
+- `sed` is a line editor that is intended to be programmed, and has its own programming language that lets you program the way it will edit your file.
+- Usually it is used for tasks such as search-and-replace
+  - Example: let's replace every intance of 7 with D in data.txt
+  - `sed -i 's/7/D/g' */*.txt`
+  - `-i` tells sed to perform the operation in-place, in other words, not in a new file
+  - `/g` means global, across the entire line
+  - `*/*.txt` is called a glob (what's a glob?)
+  - globs (a simple type of pattern, **approximation of a file or path**) e.g. `*/*.txt` or `*.pdf` are expanded by your Shell
+- You can then check with `git diff` what's being changed
+
+#### Find files with `find`
+
+- When you run `find` you tell the program the kinds of files you're looking for and it will search where you tell it to, the files that match that structure
+- Example: `find ~/Downloads -type f -name "*.zip" -mtime +30`
+- This command says: find in Downloads all items of type file (f) by name "contains .zip" modified in the last 30 days.
+- You can also run other programs on the files found with `find`
+- Example `find ~/Downloads -type f -size +100M -exec ls -lh {} \;`
+- This will list the files with more details `-l` in `-lh`, and the `-h` says print the size in human readable notation (not in bytes, in MB/GB/... etc.).
+- The curly braces `{}` get replaced with all the paths found for each file.
+- Outputs: `-rw-r--r-- 1 ag ag 1.7M Aug 25 14:31 /home/ag/Downloads/data_set_ml/train/keyboard/IMG_6884.jpeg`
+- The `\;` is for when you want to give `find` more arguments, in this case it says "this is the end of the list of commands for `-exec` anything after this is a command for `find`"
