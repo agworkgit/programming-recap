@@ -244,3 +244,7 @@
 - A `.sh` file is just a file that contains a bunch of lines of BASH commands
 - When BASH executes a file like this it will run the lines top to bottom as if you had written them in the Terminal prompt
 - To execute a `.sh` file run `sh file_name.sh` if you wrote it in `#!/bin/sh` or `bash` if you wrote it in `#!/bin/bash`
+- A file will not execute by default, it will print 'permission denied'
+- This happens because we have not told the OS that the file we're running is an executable program
+- If we want to do that we need to `chmod +x file_name.sh`, the `+x` part adds executable permissions to the file
+- Now, to run our file we simply say `./file_name.sh`, if we did `file_name.sh` the Shell will try to find a built-in program with that name
