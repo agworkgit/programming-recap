@@ -1,5 +1,9 @@
 # Lecture 1: Course Overview + Introduction to the Shell
 
+## Link
+
+[Video](https://www.youtube.com/watch?v=MSgoeuMqUmU&list=PLyzOVJj3bHQunmnnTXrNbZnBaCA-ieK4L&index=1)
+
 ## Course Structure
 
 - 9 x one hour sessions
@@ -199,3 +203,44 @@
 - `$2` says: print me every second entry on every line
 - `awk -F, '{print $2}' data` tells awk to behave like a CSV parser and split on commas
 - It's a very useful tool for pulling data out of semi-structured files easily
+
+#### Sending the output of a program into another program
+
+- `|` is used to say, take the output of the program to the left and send it as input for the program on the right
+- Example `find ~/Downloads -type f -size +100M | sort`
+- `>` is used to write the output of a program to a file
+- Note: Each time you use `>` it overrides the file!
+- `>>` is used to append to an existing file
+- Example `find ~/Downloads -type f -size +100M | sort > sorted_files.txt`
+- `<` is used to take input from a file and feed it into a program
+
+#### If/then statements
+
+- We can also do certain things only if something completed successfully
+- Example: `if grep 2026 thedate.txt; then echo "it's 2026"; fi` and we can chain to the end of this as much as we want
+- You can also test expressions with the `[ expression ]` syntax or `test`
+- Example: `if [ "hello" = "world" ]; then echo "equal"; else echo "not equal"; fi`
+
+#### While loops
+
+- We can also write loops
+- Example: `while grep 2026 thedate.txt; do echo "it's still 2026"; date > thedate.txt; sleep 10; done`
+- This will run the command as long as the expression is still true
+- `sleep 10` tells the loop to run every 10 seconds
+
+#### For loops
+
+- `for varname in a b c d; do echo "$varname"; done`
+- Prints: a b c d
+- `for num in $(seq 1 10); do echo "$num"; done`
+- Prints: 1 2 3 4 5 6 7 8 9 10
+- `seq` prints sequences of numbers i.e. 1 10 in increments of 1, or 1 2 10 to print in increments of 2
+- So `$(seq 1 10)` is separated into values that the variable `num` uses on each iteration of the for loop
+
+### Automation Files
+
+#### `#!/bin/sh` at the top of files
+
+- A `.sh` file is just a file that contains a bunch of lines of BASH commands
+- When BASH executes a file like this it will run the lines top to bottom as if you had written them in the Terminal prompt
+- To execute a `.sh` file run `sh file_name.sh` if you wrote it in `#!/bin/sh` or `bash` if you wrote it in `#!/bin/bash`
