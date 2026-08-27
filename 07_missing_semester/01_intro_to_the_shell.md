@@ -72,3 +72,32 @@
 
 - If you run into file naming issues, where you have quotes etc..., you can put a `\` in front of the character you want to escape.
 - The backslash says "don't treat the next character as a special character"!
+- Example that won't work! `echo 'bob's world'`
+  - The argument interpretation will stop at `'bob'` but since there's more content after that the Shell will terminate abruptly and expect more input!
+  - Instead you can wrap in double quotes.
+
+#### `man` - Manuals
+
+- Example: `man echo`
+- Will show you the `echo` program's usage and commands.
+- Use it to understand the commands you want to run and what they do.
+
+#### `--help` or `-h` - Attribute
+
+- Most programs can take this attribute and show you a shorter manual.
+
+#### `cd` - Change Directory
+
+- To change in which directory (folder) you want to operate.
+- Example: `cd /bin`, `cd /`, etc...
+- The prompt will indicate your current location.
+
+#### Paths
+
+- If you use `/` you will cd into an absolute path.
+- If you use a dir name without the `/` you will `cd` into a relative path. Meaning inside the current location.
+- `.` is the current directory.
+- `..` is the previous (parent) directory.
+- `~` points you back to your `home` directory.
+- You can combine these methods to navigate the file system however you see fit.
+- **Use case:** easily moving up and down directories without having to specify the whole absolute path each time you want to move around the file system.
