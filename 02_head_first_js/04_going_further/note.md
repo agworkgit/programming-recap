@@ -42,7 +42,7 @@ It will help us think through how the program is going to work without having to
 - Let's call it _isSunk_ and set it to false.
 
 ```pseudocode
-LOOP: *while the ship is not sunk*
+LOOP: while the ship is not sunk
     GET the user's guess
     COMPARE the user's input to valid input values
     IF the user's guess is valid
@@ -71,3 +71,40 @@ TELL user stats
 | 3         | 4          | 5          | 2     | 3       | 0    | false  |
 | 3         | 4          | 5          | 3     | 4       | 1    | false  |
 | 3         | 4          | 5          | 5     | 5       | 1    | true   |
+
+# But there's a bug! Can you find it?
+
+```javascript
+if (guess == location1 || guess == location2 || guess == location3) {
+  alert("HIT!");
+  hits = hits + 1;
+  // you guessed all 3 locations
+  if (hits == 3) {
+    isSunk = true;
+    alert("You sank my battleship!");
+  }
+} else {
+  alert("MISS");
+}
+```
+
+```javascript
+if (guess == location1 || guess == location2 || guess == location3) {
+  // Bugfix - previous_guesses var initialised at the top
+  // Then we compare to see if the current guess is not equal to the previous guess before doing anything else
+  if (guess != previous_guess) {
+    alert("HIT!");
+    hits = hits + 1;
+    previous_guess = guess;
+  } else {
+    alert("Please guess the next location!");
+  }
+  // you guessed all 3 locations
+  if (hits == 3) {
+    isSunk = true;
+    alert("You sank my battleship!");
+  }
+} else {
+  alert("MISS");
+}
+```
