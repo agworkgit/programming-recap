@@ -109,3 +109,29 @@ mkdir project1 project2 project3
 - In order to generate a key `ssh-keygen -a 100 -t ed25519 -f ~/.ssh/id_ed25519`
 - You should never share what your private ssh key is publicly! e.g. `id_ed25519`
 - Copy files between a machine and a remote (ssh) machine: `scp ignore.py jjgo@192.168.65.4:/home/jjgo`
+
+### Terminal Multiplexers (tmux)
+
+- Terminal Multiplexers are programs that make it easy to run many other programs within the same environment
+- Why is this convenient? Because if you have a tmux session and for some reason your ssh session is dropped, tmux will intercept the kill signal and handle it so that it's session keeps running, so next time you re-connect to the remote machine we can re-arrach with `tmux attach` and the session will still be there as we left it with all it's running tasks.
+
+### Customising your Shell
+
+- To install additional programs you might want to use e.g. `ripgrep, tmux, etc...` you have to check your OS's package manager, there are several in use e.g. `brew (mac), apt (ubuntu), pacman (arch), etc...`
+- Once you know the above you can simply run `sudo apt install ripgrep` as an example for the apt package manage and it will install the program for you
+- A reference site to find out how to install programs that you don't have, in case you get 'command not found' is: https://command-not-found.com
+- Shell configuration files are commonly found on GitHub as dotfiles, read through some of them and check how other people configure their Shells
+- By using **symlinks** (a file pointing to another file) you can have a common repo of all your dot files and have the local files point to a local pull of that repo, in which case you can repeat this process on any machine and restore your configurations
+
+#### Appending more programs to PATH
+
+- If you want to append another program to PATH (the built-in programs of the Shell) you can use the following syntax `export PATH="$PATH:path/to/append"`, this says append to the PATH variable whatever is currently in PATH + the new program you want to append.
+- On a remote machine, if you disconnect, that program you appended will not persist!
+- The way to persist that is to add `export PATH="$PATH:path/to/append"` to the Shell configuration file, e.g. `vim ~/.bash_profile` or whatever the configuration file name is for your Shell
+
+#### Plugins
+
+- Many plugins exist that can extend the functionality of your Terminal, e.g. autocomplete, fuzzy find, highlighting existing/non-existing commands, etc...
+- Frameworks can be good too but they might slow down your Shell, it's better to install only the things you use.
+- There are also LLM tools that can let you describe your command in plain English and covert it to the relevant bash command that needs to be run.
+- You can also integrate Claude Code into the shell for plain English instructions.
