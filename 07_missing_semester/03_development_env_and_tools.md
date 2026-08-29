@@ -83,6 +83,8 @@
 
 - You will have functionality that gives you really smart auto-complete.
 - When you work with some of these tools really make sure to review and understand what they do, they are clever but not as smart as a trained engineer.
+- Hard tasks are not yet suitable, beware that they will fumble.
+- Keep up to date with how this tech is advancing and what is possible.
 
 #### Tab auto-completion
 
@@ -94,4 +96,16 @@
 - CTRL/CMD + I if Copilot is enabled.
 - After a prompt, the code will be modified and you will see a git style diff of the changes.
 
+#### Energy concerns
+
+- Local AI inference drains battery quickly.
+- Remote AI drains battery less than Local but still significantly.
+
+#### Privacy concerns
+
+- Models can relay data back to their cloud if they are Remote models.
+- Local models are less affected by this.
+
 ## Regular Expressions & Search-and-Replace
+
+- Mentioned but not covered yet.
