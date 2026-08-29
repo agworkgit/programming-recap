@@ -46,3 +46,11 @@
 - `demo/corruption.c`
 - Bear in mind that `rr` does not work well on VMs because they require hardware support, they need to monitor certain things on the CPU in order to do the reverse-debugging or record the things that you need.
 - This is also a Linux only tool, but when you can use it, it can be extremely powerful.
+- This process can also be accomplished with `gdb`.
+
+### Stuck Processes
+
+- `strace` lets you trace system calls that a given process is running.
+- e.g. `strace + name_of_program` or `strace -p + PID` of a running program.
+- Test `strace ls -l 2>&1 | less`
+- `less` is useful when you have a program that produces a lot of output.
