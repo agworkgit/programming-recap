@@ -25,5 +25,6 @@ Hence, I am taking another pass at it, this time the aim is to dive in deeper an
 - JavaScript - The Good Parts (Book)
 - p5 - Getting Started with P5.js (Book)
 - Missing Semester (Course) (Shell, Task Automation, etc..)
+- Eli The Computer Guy - PHP (Course)
 - Steve Griffith - JavaScript From The Start (Course)
 - UoL - ITP1/ITP2 Modules (Courses)
