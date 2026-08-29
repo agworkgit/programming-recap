@@ -1,5 +1,6 @@
 <?php
 // Variables start with $var_name = value
+// Notice that we don't need to declare any types in PHP
 $headline = "PHP Test Examples";
 $int = 1;
 $float = 2.2;
