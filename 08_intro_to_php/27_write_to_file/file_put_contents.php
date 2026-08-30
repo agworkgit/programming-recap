@@ -2,7 +2,7 @@
 // sets timezone
 date_default_timezone_set('GMT');
 
-$file = 'file.html';
+$file = 'file.txt';
 $date = date("D M j G:i:s T Y"); // time() returns current time
 $info = "Iteration: $date\n";
 
