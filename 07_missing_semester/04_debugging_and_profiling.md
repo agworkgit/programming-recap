@@ -53,4 +53,52 @@
 - `strace` lets you trace system calls that a given process is running.
 - e.g. `strace + name_of_program` or `strace -p + PID` of a running program.
 - Test `strace ls -l 2>&1 | less`
+- List only processes relating to particular operation `strace -f -e%file ls -l 2>&1 | less`
+- `-f` stands for follow forks (other programs getting executed at the same time), for `strace`
 - `less` is useful when you have a program that produces a lot of output.
+- Check the `man strace` for more info on different process type tracing.
+
+### Tracking Latecy Distribution Of Read Calls
+
+- There are programs that you can install into the kernel with its permission, to monitor such metrics and inspect internal kernel state.
+- `bpftrace` like strace but it let's you write more advanced expressions.
+- Example: `sudo bpftrace -e 'tracepoint:syscalls:sys_enter_openat /pid == cpid/ { printf("%s %s\n", comm, str(args->filename)); }' -c ls`
+- `bpftrace` will trace the entire kernel, everything that's happening on your computer.
+- Another similar program is `biolatency`, monitors the enter and exit of every system call, and prints the distribution of latency.
+- Another one is `supersnoop`.
+- These exist to trace what a program is doing, why is it stuck, etc...
+- `tcpdump` will create a dump of all the trafic that goes over your network interface.
+- Example: `sudo tcpdump -i any port 80`
+- This will log every IP packet.
+- Really useful for debugging network protocols.
+- `wireshark` is a GUI application written on top of this.
+- It will struggle with encrypted traffic.
+- But there are tools like `mitmproxy`, which pretends to be an https server and logs all the packets to disk after decrypting them.
+
+## Sanitisers
+
+- Are extensions to your compiler that make your compiler put extra instructions into your program to do sanity checks to make sure your program isn't doing something bad.
+- Example: `gcc -fsanitize=address -g heap_overflow.c -Wno-stringop-overflow -o overflow`
+- `-fsanitize=address` this tells the compiler insert extra instructions to sanity check what my program is doing. It will log what the error is, a stack backtrace, and it gives you information about where the memory was allocated before it got overwritten.
+- Another useful tool to analyse programs written by other people is `valgrind`, which is a program interpreter, it pretends to be a CPU, takes your program and executes the instructions, but because it pretends to be a CPU it can do certain things before and after it executes an instruction, so the program will execute slower than normal but you'll be able to check more details, and get in-depth analysis about where bugs are. It is also used in profiling for giving you instruction level accurate profile information (how many instructions did it take? how many cpu cycles? etc...).
+
+## LLM Debugging
+
+- It's quite good at interpreting cryptic error messages.
+- It can also help with finding bugs in programs that traverse language boundaries, e.g. a Python program that links to a Rust library than in turn links to a C library for something... (especially if you give it access to the source code of the three dependencies). It won't fix this problem but it can find the bugs.
+- It can also help navigate stack/crash traces.
+
+## Profiling
+
+- Have you ever timed how long something takes?
+- `time` is built into the Shell and gives you a summary of how long something took to complete.
+- The time between usr+sys and real time is how log that process spent waiting.
+- `hyperfine` is another tool that uses statistical methods to determine the standard deviation.
+- `htop` shows you the utilisation of your cpu cores.
+- `btop/htop` - system resource monitors
+- `perf` - can show your functions agains Assembly translations
+- `flamegraph/inferno` - flame graphs (not perfectly accurate but very visual)
+- `valgrind` - advanced profiler
+- `gnuplot` - similar to `bpftrace` but will plot you a graph
+- `mathplotlib` (Python) - if you want to get intricate with your data plots
+- `ggplot2` - has fasset wrapping, plot per complexity
