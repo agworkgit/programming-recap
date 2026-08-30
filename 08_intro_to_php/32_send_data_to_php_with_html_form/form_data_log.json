@@ -1,0 +1,6 @@
+{
+  "name": "bob",
+  "uniform_size": "small",
+  "shifts": ["Morning Shift", "Afternoon Shift", null],
+  "email": "bob@new.com"
+}
