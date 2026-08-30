@@ -28,3 +28,5 @@ while ($j < sizeof($nums)) {
 }
 
 print "Total is: $sum"; // 55
+print "\n";
+print $names[2]; // Jon
