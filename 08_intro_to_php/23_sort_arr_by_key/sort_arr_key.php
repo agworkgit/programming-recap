@@ -27,3 +27,6 @@ print "\n";
 ksort($inventory);
 print_r($inventory); // coats, shirts, trousers
 print $inventory['shirts']['t-shirt']; // 10
+print "\n";
+krsort($inventory); // reverse key sort
+print_r($inventory); // trousers, shirts, coats
