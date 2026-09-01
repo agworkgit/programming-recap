@@ -1,3 +1,5 @@
+<!-- Beware, this is an incredibly insecure way of passing around variables. -->
+
 <?php
 
 session_start();
