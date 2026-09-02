@@ -1,6 +1,6 @@
 # Programming Recap
 
-A repo to solidify fundamental to advanced programming concepts in Shell, JS, Python, C++ and P5.js.
+A repo to solidify fundamental to advanced programming concepts in JavaScript, HTML, PHP, C, C++, Python, and Shell.
 
 Why? After completing the ITP1 & ITP2 modules I felt like the concepts where starting to fade as I have learned them very quickly but without diving in too deep. In other words I have skimmed through a lot of the material and pulled out what was most relevant to pass the courses.
 

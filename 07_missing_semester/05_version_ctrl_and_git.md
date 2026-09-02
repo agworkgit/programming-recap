@@ -76,4 +76,8 @@ references = map<String, String>
 - `git init` will initialise an empty repo in the current working directory.
 - `git status` will show you the current status of the repo, if there are any uncommited changes, etc...
 - `git help <command>` will show you a guide of the command you want to run.
--
+- `git add` will stage your changes.
+- `git commit -m "commit message"` will commit your changes.
+- `git log --graph` shows a brief history of changes up to the current point.
+- `git cat-file -p <commit-hash>` will show the data structure of a commit.
+- `git push origin <branch-name>` pushes your commit to the remote repo on GitHub.
