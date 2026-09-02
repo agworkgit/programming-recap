@@ -71,7 +71,7 @@ references = map<String, String>
 - And there are other similar services such as GitLab, etc...
 - Git itself is an Open Source software and runs repos locally on your machine.
 
-### Git Commands
+## Git Commands
 
 - `git init` will initialise an empty repo in the current working directory.
 - `git status` will show you the current status of the repo, if there are any uncommited changes, etc...
@@ -79,5 +79,16 @@ references = map<String, String>
 - `git add` will stage your changes.
 - `git commit -m "commit message"` will commit your changes.
 - `git log --graph` shows a brief history of changes up to the current point.
+- `git log --graph --all` shows you all the things reachable from other branches.
 - `git cat-file -p <commit-hash>` will show the data structure of a commit.
 - `git push origin <branch-name>` pushes your commit to the remote repo on GitHub.
+- `git branch` displays the available branches.
+- `git branch <new-branch-name>` creates a new working branch.
+- `git branch -d <existing-branch-name>` deletes a branch.
+- `git switch <branch-name>` will switch your current branch to the one mentioned (HEAD points to this now) and it will also change the state of changes in a file.
+- `git merge <branch-name>` merges a branch into your current branch.
+- `git reflog` a history of your references.
+
+## Merge Conflicts
+
+- Will happen when two different branches make changes to the same block of code, meaning that it's not the case where a branch might add something to the top of the file and the other might continue with something at the bottom of a file, but instead both branches are attempting to change the same piece of code.

@@ -4,6 +4,6 @@ charlie
 delta
 echo
 foxtrot
-gamma
+golf
 hotel
 indigo
