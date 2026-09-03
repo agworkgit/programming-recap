@@ -150,3 +150,73 @@ RUN uv pip install /app --system --no-cache
 
 - By doing this you might cut in half the size of what the container image will end up being.
 - To list all available images you can run `docker image ls`, and if you compare the first with the optimised verison, you should see a noticeable difference in size.
+- With time it should become obvious what dependencies you need to include in your Dockerfile.
+
+## Services & Orchestration
+
+- Running containers is good but at some point you will start to find another layer of abstraction, and that layer means that instead of relying on dependencies that are regular packages you might start depending on entire services, and those services have their own separate container, as an example this could be an entire PostgreSQL database and now you have to decide, you have the option to install Postgre within your Dockerfile and hope that the dependencies that Postgre has and the dependencies that your program has don't conflict with eachother, or you have to just separate them into different containers and make them communicate with eachother, and because of dependency hell, the second part of this decision is used more often.
+- Deploying and connecting services to one another via `docker-compose`:
+
+```YAML
+# docker-compose.yml - Multi-container application example
+services:
+    web:
+        build:
+            context: .
+        ports:
+            - "1337:1337"
+        environment:
+            - ETCD_URL=http://etcd:2379
+        # don't start the web server until this database is running
+        depends_on:
+            - etcd
+
+etcd:
+    image: quay.io/coreos/etcd:v3.5.9
+    command:
+        - etch
+        - --listen-client-urls=http://0.0.0.0:2379
+        - --advertise-client-urls=http://etcd:2379
+    volumes:
+        - etcd_data:/etcd-data
+
+volumes:
+    etch_data:
+```
+
+- Docker compose is an extension of Docker that takes in a YAML configuration file and translates it into a series of Docker commands to deploy the containers that you need to run.
+- In this case we are deploying two services, a web server and a database. Also, this configuration file specifies as the dependency the database service, only after that is up and running the rest of the application will run.
+- `docker compose up` will spawn both containers and give you the url at which it's running.
+- So now we can deploy these multi-service applications, but we still have a problem, who will start this whenever the machine gets restarted?
+- So another pattern that now appears is 'service (container) orchestration', on Linux the most popular tool is `systemd` and it has a way of defining services, so we can restart a new one by creating a file under `/etc/systemd/system/myapp.service`. `systemd` also has its own syntax for defining things, and this is a great use case for LLMs in learning what are the options.
+
+```systemd conf file
+[Unit]
+Description=My Application
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/yourname/demo/webapp
+ExecStart=/usr/bin/docker compose up -d
+ExecStop=/usr/bin/docker compose down
+
+[Install]
+WantedBy=multi-user.target
+```
+
+- Then we can start the application by using the command `sudo systemctl start myapp`
+- Nothing will be printed after running the command so to check status we run `sudo systemctl status myapp`
+- The benefit of this is that the same process as doing `docker compose up` will be done but now it's the operating system that is managing this and if we were to restart the machine, this will start automatically.
+- And if we want to stop it we run `sudo systemctl stop myapp`
+
+## Publishing
+
+- Giving other people access to the services you create.
+- A lot of packages will put their code on GitHub and give you instructions on how to install it.
+- `uv publish --publish-url https://test.pypi.org/legacy/` will upload your package for other people to use.
+- The `https://test.pypi.org/legacy/` is an URL dedicated to testing that you know how to publish packages.
+- To test if it can be downloaded we run `uv pip install --index-url https://test.pypi.org/simple/ package-name`
+- Docker follows a similar process, the important thing is to include your username for permission checks `docker build -t your-username/image-name docker/optimized`, once that is done we can push the image with `docker push your-username/image-name:latest`, and then you'll be able to see your image posted on DockerHub.
