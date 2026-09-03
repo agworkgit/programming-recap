@@ -80,14 +80,19 @@ references = map<String, String>
 - `git commit -m "commit message"` will commit your changes.
 - `git log --graph` shows a brief history of changes up to the current point.
 - `git log --graph --all` shows you all the things reachable from other branches.
+- `git log -p` shows you a brief history of commits plus a diff.
 - `git cat-file -p <commit-hash>` will show the data structure of a commit.
-- `git push origin <branch-name>` pushes your commit to the remote repo on GitHub.
 - `git branch` displays the available branches.
 - `git branch <new-branch-name>` creates a new working branch.
 - `git branch -d <existing-branch-name>` deletes a branch.
 - `git switch <branch-name>` will switch your current branch to the one mentioned (HEAD points to this now) and it will also change the state of changes in a file.
 - `git merge <branch-name>` merges a branch into your current branch.
 - `git reflog` a history of your references.
+- `git remote add origin <repo-link>` to connect a local repo to a remote repo.
+- `git push origin <branch-name>` pushes your commit to the remote repo on GitHub.
+- `git clone <repo-link>` downloads any remote repo that is public.
+- `git pull origin <branch-name>` pulls the latest branch changes.
+- `git diff` useful when you want to see what has changed between different commits in your history.
 
 ## Merge Conflicts
 
