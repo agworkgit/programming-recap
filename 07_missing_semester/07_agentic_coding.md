@@ -1,5 +1,7 @@
 # Lecture 7: Agentic Coding
 
+- Page (details/exercises): https://missing.csail.mit.edu/2026/agentic-coding/
+
 ## Aside
 
 - Wow, the audience differences between this and the previous lecture are astonishing.
@@ -49,5 +51,34 @@
 
 ### Great Use Cases
 
-- Using them to fix issues in your code: bugs, compilation errors, linter issues.
-- Using a unit test, you can try if the agent can fix it for you.
+- Using them to fix issues in your code: bugs, refactoring, compilation errors, linter issues.
+- Using a unit test, you can check if the agent can make the test pass.
+- Code review.
+- Helping you understand code bases to make it easier to contribute.
+
+## Advanced Features
+
+- Reusable prompts (presets)
+- Parallel agents (git worktree)
+- MCPs (model context protocol), for connecting agent harnesses with tools/services
+- Context Management:
+  - Clearing the context window (prompt/response history)
+  - Rewind (pop messages off the history stack)
+  - Compaction (replacing the prefix of your context with a summary of it)
+  - LLMs.txt:
+    - The underlying coding models used by agents are fixed (data from a specific time bracket)
+    - They do get updated from time to time but at any given moment the model's data might be stale (knowledge cutoff).
+    - A way around this limitation is to give the model at inference time the data it doesn't have or know about.
+  - AGENTS.md or CLAUDE.md (a repo level document that gets read by the agent everytime it gets booted up)
+  - Skills (context management):
+    - Used to solve the problem of having an overblown AGENTS.md file
+    - See this document to know how to run tests, this document on coding best practices, etc...
+    - Provides general information on the various topics the agent should know in a modular way.
+  - Sub-agents:
+    - A parent agent directing specialised agents for specific tasks.
+
+## Validation & Security
+
+- For critical jobs, validate and check security concerns yourself, these agents can make mistakes and in those areas your experience might be more important in addressing the issues.
+- Be aware that models can hallucinate, try to gaslight you that it's correct, and fall down rabbit holes, and get stuck on a tests generating rubbish code.
+- We're far off from the point where programmers and computer scientists are obsolete.
