@@ -51,4 +51,9 @@
     - Include what you already tried
     - The best thing to do is a minimal reproducible example
     - Search whether there is another bug report about the same thing already (avoid duplication and noise)
-  -
+    - Some projects might have their own template about structuring your report
+  - Sending PRs:
+    - Look at CONTRIBUTIONS.md and LICENSE.md first if they're present
+    - In commercial settings the license might stipulate copyrights differently than GPL (where once code is commited you no longer have distribution rights over that code)
+    - Keep the general hygiene we covered for commits, useful and reviewable in isolation
+    - When you make changes to enable a feature, you should open a PR that says here's the feature with two separate commits in the PR and you mention that it contains two commits, one that makes changes to enable the feature and for the new feature alone, give review instructions (e.g. review commit by commit instead of the entire diff)
