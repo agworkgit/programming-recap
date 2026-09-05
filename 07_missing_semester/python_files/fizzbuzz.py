@@ -1,15 +1,17 @@
-def fizz_buzz(limit):
-  for i in range(1, limit + 1):
-    if i % 3 == 0:
-      print("fizz", end="")
-    if i % 5 == 0:
-      print("buzz", end="")
-    if i % 3 and i % 5:
-      print("fizz buzz", end="")
-    print()
+def fizz_buzz(num):
+  results = []
+  for num in range(1, num + 1):
+    if num % 3 == 0 and num % 5 == 0:
+      results.append(f"{num} fizz buzz")
+    else:
+      if num % 3 == 0:
+        results.append(f"{num} fizz")
+      if num % 5 == 0:
+        results.append(f"{num} buzz")
+  return results[-1]
 
 def main():
-  fizz_buzz(20)
+  print(fizz_buzz(30))
 
 if __name__ == "__main__":
   main()
