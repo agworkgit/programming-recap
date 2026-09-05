@@ -80,5 +80,108 @@ def left_pad(s: str, i: int) -> str:
 # test_file
 @given(st.text(max_size=20), st.integers(min_value=0, max_value=50))
 def test_left_pad_1(s, i):
-    len(left_pad(s, i) >= i)
+    assert len(left_pad(s, i) >= i)
+```
+
+- Running a Hypothesis test: let a test runner such as `pytest` pick up on it (as long as the function name starts with `test_`)
+
+## Pre-Commit Hooks
+
+- Program `pre-commit`
+- A way to setup git to run a command before any commit happens.
+- You could set up: formatter, linters, and tests.
+- Example configuration:
+
+```YAML
+repos:
+    - repo: local
+      hooks:
+        - id: hatch-fmt-check
+          name: hatch fmt --check
+          entry: hatch fmt --check
+          language: system
+          pass_filenames: false
+          always_run: true
+```
+
+- To install a config, run `pre-commit install`
+- When you then run `git commit -a` the message editor won't pop up if there are format errors, linter errors, testing errors, etc...
+
+## Continuous Integration
+
+- An example of this is `GitHub Actions`, with this you can schedule code runs to do specific tasks at given times, including making it a recurring process.
+- It's a way run code in the cloud whenever you make changes to your repository.
+- Example of a GitHub Actions config file:
+
+```YAML
+# ci.yml
+name: CI
+on:
+    push:
+    pull_request:
+    schedule:
+        - cron: '0 8 * * 6'
+jobs:
+    test:
+        runs-on: ubuntu-22.04
+        strategy:
+            matrix:
+                python: ["3.10","3.11","3.12","3.13","3.14"]
+            name: "Test: Python ${{ matrix.python }}"
+            steps:
+                - uses: actions/checkout@v5
+                - uses: actions/setup-python@v6
+                  with:
+                    python-version: ${{ matrix.python }}
+                - uses: pypa/hatch@install
+                - run: hatch test -v --cover --include python=$(echo ${{ matrix.python }} | tr -d '-')
+# you can add as many jobs as you want: tests, typechecks, formatting, linting, etc...
+```
+
+- This is particularly useful for PRs from comtributors
+- For binaries, you can run a compiler and produce the different binaries for operating systems
+- You can also automatically deploy applications to web services
+- Automatically update a website whenever you `git push` to the repo
+
+## Command Runners
+
+- In this lecture you saw commands like `hatch fmt` and `hatch test`:
+  - `hatch` is a Python project manager and it supports TOML configuration files, so it's a convenient way to run all commands that relate to code quality without having to type long invokations.
+- `just` is a command runner, which can create short aliases for long command chains, you define the commands in a `justfile`
+
+```TOML
+<!-- Example configuration file for hatch -->
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling-build"
+
+[project]
+name = "your-proj-name"
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["version"]
+
+[tool.hatch.version]
+path = "src/your-project-name/__init__.py"
+
+[tool.hatch.envs.default]
+installer = "uv"
+
+[tool.hatch.envs.hatch-test]
+extra-dependencies = ["hypothesis>=6.150,<7"]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.10","3.11","3.12","3.13","3.14"]
+
+[tool.coverage.run]
+omit = ["*/tests/*"]
+```
+
+```justfile
+typecheck:
+    hatch run types:mypy --strict --install-types --non-interactive src tests
+format:
+    hatch run fmt -f
+lint:
+    match run fmt -l
 ```
