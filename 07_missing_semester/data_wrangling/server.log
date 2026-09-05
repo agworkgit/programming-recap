@@ -1,0 +1,137 @@
+Sep 05 18:00:01 server01 systemd[1]: Started Session 1842 of User root.
+Sep 05 18:00:01 server01 CRON[28471]: pam_unix(cron:session): session opened for user root
+Sep 05 18:00:01 server01 CRON[28471]: pam_unix(cron:session): session closed for user root
+Sep 05 18:01:14 server01 sshd[28503]: Accepted publickey for alex from 192.168.1.42 port 52184 ssh2: ED25519 SHA256:Qx7mK3pR8vN2aBcD
+Sep 05 18:01:14 server01 sshd[28503]: pam_unix(sshd:session): session opened for user alex(uid=1000) by (uid=0)
+Sep 05 18:01:15 server01 sshd[28503]: pam_env(sshd:session): deprecated reading of user environment enabled
+Sep 05 18:01:15 server01 systemd-logind[742]: New session 1843 of user alex.
+Sep 05 18:01:15 server01 systemd[1]: Started Session 1843 of User alex.
+Sep 05 18:04:27 server01 sudo[28612]: alex : TTY=pts/0 ; PWD=/home/alex ; USER=root ; COMMAND=/usr/bin/systemctl status nginx
+Sep 05 18:04:27 server01 sudo[28612]: pam_unix(sudo:session): session opened for user root(uid=0) by alex(uid=1000)
+Sep 05 18:04:27 server01 sudo[28612]: pam_unix(sudo:session): session closed for user root
+Sep 05 18:07:53 server01 sshd[28503]: Received disconnect from 192.168.1.42 port 52184:11: disconnected by user
+Sep 05 18:07:53 server01 sshd[28503]: Disconnected from user alex 192.168.1.42 port 52184
+Sep 05 18:07:53 server01 sshd[28503]: pam_unix(sshd:session): session closed for user alex
+Sep 05 18:07:53 server01 systemd-logind[742]: Session 1843 logged out. Waiting for processes to exit.
+Sep 05 18:07:53 server01 systemd[1]: session-1843.scope: Deactivated successfully.
+
+Sep 05 18:12:09 server01 sshd[28701]: Connection from 203.0.113.45 port 44721 on 10.0.0.10 port 22
+Sep 05 18:12:09 server01 sshd[28701]: Invalid user admin from 203.0.113.45 port 44721
+Sep 05 18:12:09 server01 sshd[28701]: pam_unix(sshd:auth): check pass; user unknown
+Sep 05 18:12:09 server01 sshd[28701]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=203.0.113.45
+Sep 05 18:12:10 server01 sshd[28701]: Failed password for invalid user admin from 203.0.113.45 port 44721 ssh2
+Sep 05 18:12:11 server01 sshd[28701]: Connection closed by invalid user admin 203.0.113.45 port 44721 [preauth]
+
+Sep 05 18:15:32 server01 sshd[28745]: Connection from 198.51.100.73 port 38814 on 10.0.0.10 port 22
+Sep 05 18:15:32 server01 sshd[28745]: Failed password for root from 198.51.100.73 port 38814 ssh2
+Sep 05 18:15:35 server01 sshd[28745]: Failed password for root from 198.51.100.73 port 38814 ssh2
+Sep 05 18:15:39 server01 sshd[28745]: Failed password for root from 198.51.100.73 port 38814 ssh2
+Sep 05 18:15:42 server01 sshd[28745]: Received disconnect from 198.51.100.73 port 38814:11: Bye Bye [preauth]
+
+Sep 05 18:22:41 server01 sshd[28802]: Accepted publickey for deploy from 10.0.0.25 port 60112 ssh2: ED25519 SHA256:Zp4sLm7Qv8Yx2nRt
+Sep 05 18:22:41 server01 pam_unix(sshd:session): session opened for user deploy(uid=1001) by (uid=0)
+Sep 05 18:22:41 server01 systemd-logind[742]: New session 1844 of user deploy.
+Sep 05 18:22:41 server01 systemd[1]: Started Session 1844 of User deploy.
+Sep 05 18:24:03 server01 sudo[28831]: deploy : TTY=pts/1 ; PWD=/var/www/app ; USER=root ; COMMAND=/usr/bin/systemctl restart nginx
+Sep 05 18:24:03 server01 sudo[28831]: pam_unix(sudo:session): session opened for user root(uid=0) by deploy(uid=1001)
+Sep 05 18:24:03 server01 systemd[1]: Stopping nginx.service - A high performance web server...
+Sep 05 18:24:03 server01 systemd[1]: Starting nginx.service - A high performance web server...
+Sep 05 18:24:03 server01 systemd[1]: Started nginx.service - A high performance web server.
+Sep 05 18:24:03 server01 sudo[28831]: pam_unix(sudo:session): session closed for user root
+Sep 05 18:29:17 server01 sshd[28802]: Received disconnect from 10.0.0.25 port 60112:11: disconnected by user
+Sep 05 18:29:17 server01 sshd[28802]: Disconnected from user deploy 10.0.0.25 port 60112
+Sep 05 18:29:17 server01 sshd[28802]: pam_unix(sshd:session): session closed for user deploy
+Sep 05 18:29:17 server01 systemd-logind[742]: Session 1844 logged out. Waiting for processes to exit.
+Sep 05 18:29:17 server01 systemd[1]: session-1844.scope: Deactivated successfully.
+
+Sep 05 18:31:08 server01 sshd[28891]: Connection from 192.168.1.55 port 49201 on 10.0.0.10 port 22
+Sep 05 18:31:08 server01 sshd[28891]: Accepted password for sam from 192.168.1.55 port 49201 ssh2
+Sep 05 18:31:08 server01 pam_unix(sshd:session): session opened for user sam(uid=1002) by (uid=0)
+Sep 05 18:31:08 server01 systemd-logind[742]: New session 1845 of user sam.
+Sep 05 18:31:08 server01 systemd[1]: Started Session 1845 of User sam.
+Sep 05 18:33:51 server01 sshd[28891]: Received disconnect from 192.168.1.55 port 49201:11: disconnected by user
+Sep 05 18:33:51 server01 sshd[28891]: Disconnected from user sam 192.168.1.55 port 49201
+Sep 05 18:33:51 server01 sshd[28891]: pam_unix(sshd:session): session closed for user sam
+Sep 05 18:33:51 server01 systemd-logind[742]: Session 1845 logged out. Waiting for processes to exit.
+Sep 05 18:33:51 server01 systemd[1]: session-1845.scope: Deactivated successfully.
+
+Sep 05 18:40:12 server01 sshd[28977]: Connection from 203.0.113.45 port 51882 on 10.0.0.10 port 22
+Sep 05 18:40:12 server01 sshd[28977]: Invalid user test from 203.0.113.45 port 51882
+Sep 05 18:40:12 server01 sshd[28977]: Failed password for invalid user test from 203.0.113.45 port 51882 ssh2
+Sep 05 18:40:14 server01 sshd[28977]: Failed password for invalid user test from 203.0.113.45 port 51882 ssh2
+Sep 05 18:40:16 server01 sshd[28977]: Connection closed by invalid user test 203.0.113.45 port 51882 [preauth]
+
+Sep 05 18:45:00 server01 systemd[1]: Starting Daily apt download activities...
+Sep 05 18:45:01 server01 systemd[1]: Finished Daily apt download activities.
+
+Sep 05 18:51:27 server01 sshd[29031]: Accepted publickey for alex from 192.168.1.42 port 52391 ssh2: ED25519 SHA256:Qx7mK3pR8vN2aBcD
+Sep 05 18:51:27 server01 pam_unix(sshd:session): session opened for user alex(uid=1000) by (uid=0)
+Sep 05 18:51:27 server01 systemd-logind[742]: New session 1846 of user alex.
+Sep 05 18:51:27 server01 systemd[1]: Started Session 1846 of User alex.
+Sep 05 18:56:44 server01 sshd[29031]: Received disconnect from 192.168.1.42 port 52391:11: disconnected by user
+Sep 05 18:56:44 server01 sshd[29031]: Disconnected from user alex 192.168.1.42 port 52391
+Sep 05 18:56:44 server01 sshd[29031]: pam_unix(sshd:session): session closed for user alex
+Sep 05 18:56:44 server01 systemd-logind[742]: Session 1846 logged out. Waiting for processes to exit.
+Sep 05 18:56:44 server01 systemd[1]: session-1846.scope: Deactivated successfully.
+
+Sep 05 19:03:11 server01 sshd[29104]: Connection from 198.51.100.73 port 42117 on 10.0.0.10 port 22
+Sep 05 19:03:11 server01 sshd[29104]: Failed password for root from 198.51.100.73 port 42117 ssh2
+Sep 05 19:03:14 server01 sshd[29104]: Failed password for root from 198.51.100.73 port 42117 ssh2
+Sep 05 19:03:17 server01 sshd[29104]: Connection closed by authenticating user root 198.51.100.73 port 42117 [preauth]
+
+Sep 05 19:10:22 server01 sshd[29163]: Accepted publickey for deploy from 10.0.0.25 port 60987 ssh2: ED25519 SHA256:Zp4sLm7Qv8Yx2nRt
+Sep 05 19:10:22 server01 pam_unix(sshd:session): session opened for user deploy(uid=1001) by (uid=0)
+Sep 05 19:10:22 server01 systemd-logind[742]: New session 1847 of user deploy.
+Sep 05 19:10:22 server01 systemd[1]: Started Session 1847 of User deploy.
+Sep 05 19:18:49 server01 sshd[29163]: Received disconnect from 10.0.0.25 port 60987:11: disconnected by user
+Sep 05 19:18:49 server01 sshd[29163]: Disconnected from user deploy 10.0.0.25 port 60987
+Sep 05 19:18:49 server01 sshd[29163]: pam_unix(sshd:session): session closed for user deploy
+Sep 05 19:18:49 server01 systemd-logind[742]: Session 1847 logged out. Waiting for processes to exit.
+Sep 05 19:18:49 server01 systemd[1]: session-1847.scope: Deactivated successfully.
+
+Sep 05 19:25:37 server01 sshd[29242]: Accepted password for sam from 192.168.1.55 port 49773 ssh2
+Sep 05 19:25:37 server01 pam_unix(sshd:session): session opened for user sam(uid=1002) by (uid=0)
+Sep 05 19:25:37 server01 systemd-logind[742]: New session 1848 of user sam.
+Sep 05 19:25:37 server01 systemd[1]: Started Session 1848 of User sam.
+Sep 05 19:32:08 server01 sshd[29242]: Received disconnect from 192.168.1.55 port 49773:11: disconnected by user
+Sep 05 19:32:08 server01 sshd[29242]: Disconnected from user sam 192.168.1.55 port 49773
+Sep 05 19:32:08 server01 sshd[29242]: pam_unix(sshd:session): session closed for user sam
+Sep 05 19:32:08 server01 systemd-logind[742]: Session 1848 logged out. Waiting for processes to exit.
+Sep 05 19:32:08 server01 systemd[1]: session-1848.scope: Deactivated successfully.
+
+Sep 05 19:45:19 server01 sshd[29318]: Accepted publickey for alex from 192.168.1.42 port 53112 ssh2: ED25519 SHA256:Qx7mK3pR8vN2aBcD
+Sep 05 19:45:19 server01 pam_unix(sshd:session): session opened for user alex(uid=1000) by (uid=0)
+Sep 05 19:45:19 server01 systemd-logind[742]: New session 1849 of user alex.
+Sep 05 19:45:19 server01 systemd[1]: Started Session 1849 of User alex.
+Sep 05 19:52:44 server01 sshd[29318]: Received disconnect from 192.168.1.42 port 53112:11: disconnected by user
+Sep 05 19:52:44 server01 sshd[29318]: Disconnected from user alex 192.168.1.42 port 53112
+Sep 05 19:52:44 server01 sshd[29318]: pam_unix(sshd:session): session closed for user alex
+Sep 05 19:52:44 server01 systemd-logind[742]: Session 1849 logged out. Waiting for processes to exit.
+Sep 05 19:52:44 server01 systemd[1]: session-1849.scope: Deactivated successfully.
+
+Sep 05 20:01:03 server01 sshd[29402]: Connection from 203.0.113.45 port 55381 on 10.0.0.10 port 22
+Sep 05 20:01:03 server01 sshd[29402]: Invalid user oracle from 203.0.113.45 port 55381
+Sep 05 20:01:03 server01 sshd[29402]: Failed password for invalid user oracle from 203.0.113.45 port 55381 ssh2
+Sep 05 20:01:05 server01 sshd[29402]: Connection closed by invalid user oracle 203.0.113.45 port 55381 [preauth]
+
+Sep 05 20:08:16 server01 sshd[29461]: Accepted publickey for deploy from 10.0.0.25 port 61422 ssh2: ED25519 SHA256:Zp4sLm7Qv8Yx2nRt
+Sep 05 20:08:16 server01 pam_unix(sshd:session): session opened for user deploy(uid=1001) by (uid=0)
+Sep 05 20:08:16 server01 systemd-logind[742]: New session 1850 of user deploy.
+Sep 05 20:08:16 server01 systemd[1]: Started Session 1850 of User deploy.
+Sep 05 20:14:57 server01 sshd[29461]: Received disconnect from 10.0.0.25 port 61422:11: disconnected by user
+Sep 05 20:14:57 server01 sshd[29461]: Disconnected from user deploy 10.0.0.25 port 61422
+Sep 05 20:14:57 server01 sshd[29461]: pam_unix(sshd:session): session closed for user deploy
+Sep 05 20:14:57 server01 systemd-logind[742]: Session 1850 logged out. Waiting for processes to exit.
+Sep 05 20:14:57 server01 systemd[1]: session-1850.scope: Deactivated successfully.
+
+Sep 05 20:20:00 server01 CRON[29511]: pam_unix(cron:session): session opened for user root
+Sep 05 20:20:00 server01 CRON[29511]: pam_unix(cron:session): session closed for user root
+Sep 05 20:27:33 server01 sshd[29542]: Accepted password for sam from 192.168.1.55 port 51103 ssh2
+Sep 05 20:27:33 server01 pam_unix(sshd:session): session opened for user sam(uid=1002) by (uid=0)
+Sep 05 20:27:33 server01 systemd-logind[742]: New session 1851 of user sam.
+Sep 05 20:27:33 server01 systemd[1]: Started Session 1851 of User sam.
+Sep 05 20:31:52 server01 sshd[29542]: Received disconnect from 192.168.1.55 port 51103:11: disconnected by user
+Sep 05 20:31:52 server01 sshd[29542]: Disconnected from user sam 192.168.1.55 port 51103
+Sep 05 20:31:52 server01 sshd[29542]: pam_unix(sshd:session): session closed for user sam
+Sep 05 20:31:52 server01 systemd-logind[742]: Session 1851 logged out. Waiting for processes to exit.
+Sep 05 20:31:52 server01 systemd[1]: session-1851.scope: Deactivated successfully.
