@@ -185,3 +185,15 @@ format:
 lint:
     match run fmt -l
 ```
+
+## Regular Expressions (RegEx)
+
+- It's a language to represent string patterns
+
+- Common use cases:
+  - You can use it to search for patterns
+  - You can also do search-and-replace
+
+- There are many different inplementations of RegEx between different languages and tools, the concept remains the same but there are slight differences in the syntax
+- A comprehensive guide can be found here: https://docs.python.org/3/library/re.html#regular-expression-syntax
+- You can create RegEx pattern matching tests on: regex101.com
