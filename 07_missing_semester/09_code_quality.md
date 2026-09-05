@@ -1,6 +1,9 @@
 # Lecture 8: Code Quality
 
 - Page: https://missing.csail.mit.edu/2026/code-quality/
+- Coverage: https://coverage.readthedocs.io/en/7.16.0/
+- PyTest: https://docs.pytest.org/en/stable/
+- Hypothesis (property-based testing library): https://hypothesis.readthedocs.io/en/latest/
 
 ## Intro
 
@@ -32,3 +35,50 @@
     - Run coverage test `coverage run -m pytest`
     - Create report `coverage report`
     - Create HTML with annotations `coverage html`
+
+```Python
+# original_file
+def fizz_buzz(num):
+  results = []
+  for num in range(1, num + 1):
+    if num % 3 == 0 and num % 5 == 0:
+      results.append(f"{num} fizz buzz")
+    else:
+      if num % 3 == 0:
+        results.append(f"{num} fizz")
+      if num % 5 == 0:
+        results.append(f"{num} buzz")
+  return results[-1]
+
+def main():
+  print(fizz_buzz(30))
+
+if __name__ == "__main__":
+  main()
+
+# unit_test_file
+from python_files.fizzbuzz import fizz_buzz
+
+def test_fizzbuzz():
+    assert fizz_buzz(3) == "3 fizz"
+
+def test_fizzbuzz2():
+    assert fizz_buzz(30) == "30 fizz buzz"
+```
+
+### Property Based Testing
+
+- A concept that is very alike wiriting partial specifications of properties that should hold.
+- In Hypothesis a test looks like this:
+
+```Python
+# original_file
+def left_pad(s: str, i: int) -> str:
+    """Pads a string with spaces on the left, so that its min length is i."""
+    return (" " * i + s)[-i:]
+
+# test_file
+@given(st.text(max_size=20), st.integers(min_value=0, max_value=50))
+def test_left_pad_1(s, i):
+    len(left_pad(s, i) >= i)
+```
