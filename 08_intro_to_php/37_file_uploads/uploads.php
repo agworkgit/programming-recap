@@ -36,3 +36,4 @@ echo "File size: " . $_FILES['upload']['size'] . "Kb <br>";
 echo "<br><img src='$filename'><br>";
 
 // Important: make sure to restart the services once you modify your php.ini file, or the phprc (via SSH)
+// You can also restrict what type of file is allowed (e.g. PDF,JPEG, etc...)
