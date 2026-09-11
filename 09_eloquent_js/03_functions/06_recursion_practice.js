@@ -400,3 +400,64 @@ find(1, "1") -> RETURNS history as (1 + 2)} * 2)
   -> find(((1 + 2) * 2), `(${(1 + 2)} * 2)`), is 6 === 6? YES, RETURN history
 -> DEAD BRANCH find((1 * 2), `(${1} * 2)`)
 */
+
+/* Different Example */
+
+function mystery(n) {
+  if (n === 0) {
+    return 1;
+  }
+
+  return n * mystery(n - 1);
+}
+
+console.log(mystery(4));
+
+/* Trace:
+mystery(4)
+-> is 4 === 0? NO, RETURN 4 * mystery(4 - 1)
+  -> mystery(3)
+    -> is 3 === 0? NO, RETURN 3 * mystery(3 - 1)
+      -> mystery(2)
+        is 2 === 0? NO, RETURN 2 * mystery(2 - 1)
+          -> mystert(1)
+            is === 0? NO, RETURN 1 * mystery(1 - 1)
+              -> mystery(0), is 0 === 0? YES, RETURN 1
+          -> mystery(1) -> 1
+      -> mystery(2) -> 2
+  -> mystery(3) -> 6
+-> mystery(4) -> 4 * 6 = 24
+*/
+
+/* Ramping Complexity */
+
+function mystery(n) {
+  if (n === 0) {
+    return 0;
+  }
+
+  return mystery(n - 1) + mystery(n - 2);
+}
+
+console.log(mystery(4));
+
+/* Trace:
+mystery(4)
+  -> mystery(3) + mystery(2)
+
+  mystery(3)
+    -> mystery(2) + mystery(1)
+
+    mystery(2)
+      -> mystery(1) + mystery(0)
+
+      mystery(1)
+        -> mystery(0) + mystery(-1)
+                        -> mystery(-2) + mystery(-3)
+                          mystery(-2)
+                          -> mystery(-3) + mystery(-4)
+                            ... ad infinitum (RangeError: Maximum call stack size exceeded)
+
+        mystery(0)
+          -> RETURN 0
+*/
