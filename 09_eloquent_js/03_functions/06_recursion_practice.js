@@ -339,3 +339,64 @@ CALL console.log(find(1))
   
   RESUME find(1) -> RETURN null ?? null;
 */
+
+/* More Practice */
+
+function find(n) {
+  if (n === 6) {
+    return "FOUND";
+  }
+
+  if (n > 6) {
+    return null;
+  }
+
+  return find(n + 2) ?? find(n * 2);
+}
+
+console.log(find(1));
+
+/* Trace:
+find(1)
+-> find(3) ?? find(2)
+  -> find(3), is 3 === 6? NO, is 3 > 6? NO, RETURN find(3 + 2) ?? find(3 * 2)
+    -> find(5) ?? find(6)
+      -> find(5), is 5 === 6? NO, is 5 > 6? NO, RETURN find(5 + 2) ?? find(5 * 2)
+        -> find(7), is 7 === 6? NO, is 7 > 6? YES, RETURN null
+        -> find(10), is 10 === 6? NO, is 10 > 6? YES, RETURN null
+    -> null ?? find(6)
+      -> find(6), is 6 === 6? YES, RETURN "FOUND"
+    -> null ?? "FOUND" -> "FOUND
+  -> find(3), find(5) ?? "FOUND" -> "FOUND"
+-> "FOUND" ?? find(2) -> "FOUND"
+find(1) -> "FOUND"
+*/
+
+/* Exercise - Recursion + History */
+
+function find(current, history) {
+  if (current === 6) {
+    return history;
+  }
+
+  if (current > 6) {
+    return null;
+  }
+
+  return (
+    find(current + 2, `(${history} + 2)`) ??
+    find(current * 2, `(${history} * 2)`)
+  );
+}
+
+console.log(find(1, "1"));
+
+/* Trace:
+find(1, "1") -> RETURNS history as (1 + 2)} * 2)
+-> find((1 + 2), `(${1} + 2)`), is 3 === 6? NO, is 3 > 6? NO, RECURSE
+  -> find(((1 + 2) + 2), `(${(1 + 2)} + 2)`), is 5 === 6? NO, is 5 > 6? NO, RECURSE
+    -> find((((1 + 2) + 2) + 2), `(${((1 + 2) + 2)} + 2)`), is 7 === 6? NO, is 7 > 6? YES, RETURN NULL
+    -> find((((1 + 2) + 2) * 2), `(${((1 + 2) + 2)} * 2)`), is 10 === 6? NO, is 10 > 6? YES, RETUR NULL
+  -> find(((1 + 2) * 2), `(${(1 + 2)} * 2)`), is 6 === 6? YES, RETURN history
+-> DEAD BRANCH find((1 * 2), `(${1} * 2)`)
+*/
