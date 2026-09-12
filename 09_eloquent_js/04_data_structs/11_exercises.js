@@ -116,20 +116,113 @@ For example, if I created two new values {value: 0, rest: list} and {value: -1, 
 Write a function 'arrayToList' that builds up a list structure like the one shown when given [1,2,3] as argument.
 
 Also write a 'listToArray' function that produces an array from a list.
+*/
 
+function arrayToList(arr) {
+  let list = {};
+
+  if (arr.length === 0) {
+    return null;
+  } else {
+    list.value = arr[0];
+    list.rest = arrayToList(arr.slice(1));
+  }
+
+  return list;
+}
+
+/* Trace:
+arrayToList([1,2,3])
+    -> is arr.len === 0? NO
+    -> list.value: 1
+    -> list.rest: arrayToList(arr.slice(1))
+                  -> is arr.len === 0? NO
+                  -> list.value: 2
+                  -> list.rest: arrayToList(arr.slice(1))
+                                -> is arr.len === 0? NO
+                                -> list.value: 3
+                                -> list.rest: arrayToList(arr.slice(1)) -> return null
+                  -> list.value: 2
+                  -> list.rest: list.value = 3, list.rest = null
+    -> list.value: 1
+    -> list.rest: list.value 2, list.rest: list.value: 3, list.rest = null
+return list { value: 1, rest: { value: 2, rest: { value: 3, rest: null } } }
+*/
+
+// console.log(arrayToList([1, 2, 3, 4, 5]));
+
+let listToConvert = arrayToList([1, 2, 3]);
+console.log(listToConvert);
+// -> { value: 1, rest: { value: 2, rest: { value: 3, rest: null } } }
+
+function listToArray(list, arr = []) {
+  if (list === null) {
+    //
+  } else {
+    arr.push(list.value);
+    listToArray(list.rest, arr);
+  }
+
+  return arr;
+}
+
+console.log(listToArray(listToConvert));
+// -> [ 1, 2, 3 ]
+
+/* Trace: 
+listToArray(1 -> 2 -> 3 -> null, [])
+    list === null? NO
+    push 1
+    arr -> [1]
+    CALL listToArray(2 -> 3 -> null, [1])
+        list === null? NO
+        push 2
+        arr -> [1, 2]
+        CALL listToArray(3 -> null, [1, 2])
+            list === null? NO
+            push 3
+            arr -> [1, 2, 3]
+            CALL listToArray(null, [1, 2, 3])
+                list === null? YES
+                RETURN [1, 2, 3]
+RETURN [1, 2, 3]
+*/
+
+/* 
 Add the helper functions 'prepend', which takes an element and a list and creates a new list that adds the element to the front of the input list, and 'nth', which takes a list and a number and returns the element at the given position in the list (with zero referring to the first element) or 'undefined' when there is no such element.
 
 If you haven't already, also write a recursive version of 'nth'.
 */
 
-// function arrayToList(arr) {
-//     let len = arr.length
-//     let list = {};
+function prepend(element, list) {
+  return Object.assign({ value: element, rest: list });
+}
 
-//     while(len > 0) {
-//         list = {value: arr[0], rest: }
-//         len--
-//     }
+console.log(prepend(5, arrayToList([1, 2, 3])));
 
-//     return list;
-// }
+function nth(list, index) {
+  if (list === null) {
+    return undefined;
+  }
+
+  if (index === 0) {
+    return list.value;
+  }
+
+  return nth(list.rest, index - 1);
+}
+
+console.log(nth(arrayToList([1, 2, 3]), 1));
+// -> 2
+
+/* Trace:
+nth(1 -> 2 -> 3 -> null, 1)
+│
+├─ list === null? NO
+├─ index === 0? NO
+└─ nth(2 -> 3 -> null, 0)
+   │
+   ├─ list === null? NO
+   ├─ index === 0? YES
+   └─ return 2
+*/
