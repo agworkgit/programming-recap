@@ -226,3 +226,91 @@ nth(1 -> 2 -> 3 -> null, 1)
    ├─ index === 0? YES
    └─ return 2
 */
+
+/* Deep Comparison */
+
+/*
+Write a function 'deepEqual' that takes two values and returns 'true' only if they are the same value or are objects with the same properties, where the values of the properties are equal when compared with a recursive call to 'deepEqual'.
+To find out whether the values should be compared directly (using the === operator for that) or have their properties compared, you can use the 'typeof' operator.
+If it produces 'object' for both values, you should do a deep comparison. But you have to take one silly exception into account: because of a historical accident, 'typeof null' also produces 'object'.
+The 'Object.keys' function will be useful when you need to go over the properties of objects to compare them.
+*/
+
+/* function deepEqual(val1, val2) {
+  // Are val1 and val2 exactly the same value?
+  if (val1 === val2) {
+    return true;
+  }
+
+  // Are they both objects (and not null)?
+  if (
+    typeof val1 === "object" &&
+    typeof val2 === "object" &&
+    val1 !== null &&
+    val2 !== null
+  ) {
+    // Do they have the same number of props?
+    if (Object.keys(val1).length === Object.keys(val2).length) {
+      // Go through each property
+      for (key of Object.keys(val1)) {
+        // Property doesn't match?
+        if (!deepEqual(val1[key], val2[key])) {
+          return false;
+        }
+      }
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+} */
+
+function deepEqual(val1, val2) {
+  // If both values are exactly the same, we're done.
+  // This also handles simple values like numbers and strings.
+  if (val1 === val2) {
+    return true;
+  }
+
+  // If the values weren't identical, the only way they can still be equal is if
+  // they are both non-null objects that we can inspect.
+  // typeof null === "object", so we must explicitly check for null.
+  if (
+    typeof val1 === "object" &&
+    typeof val2 === "object" &&
+    val1 !== null &&
+    val2 !== null
+  ) {
+    // Objects with different numbers of properties cannot be equal.
+    // If one has 2 properties and the other has 3, we can stop here.
+    if (Object.keys(val1).length !== Object.keys(val2).length) {
+      return false;
+    }
+
+    // Compare every property in the first object with the corresponding property in the second object.
+    for (let key of Object.keys(val1)) {
+      // Compare the property values using deepEqual again.
+      // If the values are simple, deepEqual compares them with ===.
+      // If a value is another object, deepEqual recursively compares that object's properties too.
+      // We only return false when we find a mismatch.
+      // If they match, the loop simply continues to the next property.
+      if (!deepEqual(val1[key], val2[key])) {
+        return false;
+      }
+    }
+
+    // We reached the end without finding a mismatch, so every property matched.
+    return true;
+  }
+
+  // The values weren't identical and weren't two comparable objects, so they must be different.
+  return false;
+}
+
+console.log(deepEqual(1, 1));
+// -> true
+console.log(deepEqual("hi", "hi"));
+// -> true
+console.log(deepEqual("hi", "hello"));
+// -> now it correctly returns false
