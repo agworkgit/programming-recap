@@ -262,3 +262,21 @@ console.log(horseShoe.charCodeAt(0));
 // -> 55357 (Code of the half-character)
 console.log(horseShoe.codePointAt(0));
 // -> 128052 (Actual code for horse emoji)
+
+/* 
+JS's 'charCodeAt' method gives you a code unit, not a full character code. 
+The 'codePointAt' method, added later, does give a full Unicode character, so we should use that to get characters from a string. But the argument passed to 'charCodeAt' is still an index into the sequence of code units. To run over all characters in a string, we'd still need to deal with the question of whether a character takes up one or two code units.
+
+In the previous chapter, I mentioned that a 'for...of loop' can also be used on strings. Like 'codePointAt', this type of loop was introduced at a time when people were actually aware of the problems with UTF-16. When you use it to loop over a string, it gives you real characters, not code units.
+*/
+
+let roseDragon = "🌹🐉";
+for (let char of roseDragon) {
+  console.log(char);
+}
+// -> 🌹
+// -> 🐉
+
+/* 
+If you have a character (which will be a string of one or two code units), you can use 'codePointAt(0)' to get its code.
+*/
