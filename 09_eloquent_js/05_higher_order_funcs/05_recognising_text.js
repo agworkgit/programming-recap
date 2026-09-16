@@ -72,3 +72,13 @@ The function first counts the characters by name, using 'characterScript' to ass
 
 To be able to compute percentages, we first need the total number of characters that belong to a script, which we can compute with 'reduce'. If we find no such characters, the function returns a specific string. Otherwise, it transforms the counting entries into readable strings with 'map' and then combines them with 'join'.
 */
+
+/* 
+SUMMARY
+
+Being able to pass function values to other functions is a deeply useful aspect of JS.
+It allows us to write functions that model computations with "gaps" in them.
+The code that calls these functions can fill in the gaps by providing function values.
+
+Arrays provide a number of useful higher-order methods. You can use 'forEach' to loop over the elements in an array. The 'filter' method returns a new array containing only the elements that pass the predicate function. You can transform an array by putting each element through a function using 'map'. You can use 'reduce' to combine all the elements in an array into a single value. The 'some' method tests whether any element matches a given predicate function, while 'find' finds the first element that matches a predicate.
+*/
