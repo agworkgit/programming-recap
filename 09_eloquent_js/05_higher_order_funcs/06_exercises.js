@@ -72,3 +72,15 @@ function someArrLoop(arr, test) {
 
 console.log(someArrLoop(testArr, (n) => n == 3));
 // -> true
+
+let mapper = (array, instructions) => {
+  let output = [];
+  for (let i = 0; i < array.length; i++) {
+    output.push(instructions(array[i]));
+  }
+  return output;
+};
+
+let arrOfNums = [1, 2, 3, 4, 5];
+let squareNums = mapper(arrOfNums, (n) => n * n);
+console.log(squareNums);
