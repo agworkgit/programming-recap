@@ -218,4 +218,30 @@ Benefits:
 Downsides:
 - 99% of devs have no idea how it works
 - We have to upper case the first letter of the function so we know it requires 'new' to work!
+
+5. The 'class' syntactic sugar
+*/
+
+class UserCreator {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+  increment() {
+    this.score++;
+  }
+  login() {
+    console.log(`You logged in ${this.name}`);
+  }
+}
+
+const classUser = new UserCreator("Eva", 15);
+classUser.increment();
+console.log(classUser.score);
+// -> 16
+classUser.login();
+// -> You logged in Eva
+
+/* 
+So now, instead of storing the methods on a separate object that we use as the 'prototype' of our constructor function. They are all put together under one construct 'class', the constructor function holds the properties, and below it we define methods that perfrom actions on the (data) properties.
 */
