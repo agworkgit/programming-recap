@@ -170,3 +170,52 @@ But now we need to adjust how we write the body of userGen - how can we:
 - Refer to the auto-created object?
 - Know where to put our single copies of functions?
 */
+
+/* 
+4. Interlude - functions are both objects and functions
+- We could use the fact that all functions have a default property on their object version, 'prototype', which itself is an object, to replace our 'functionStore' object
+*/
+
+function MakeUser(name, score) {
+  this.name = name;
+  this.score = score;
+
+  /* 
+  at call time, 'new' will create inside here
+  this = {}
+  which is then bound to the 'prototype' property of the object (the function is treated as a regular object for anything else besides being called)
+  a hidden __proto__ on the new instance that will create a reference pointing back to 
+  */
+}
+
+// All functions (treated as a regular object) have a 'prototype' property which is an empty object
+MakeUser.prototype.increment = function () {
+  this.score++;
+};
+
+MakeUser.prototype.login = function () {
+  console.log(`You're logged in ${this.name}`);
+};
+
+// 'new' is the keyword that allows us to change the functions internal behaviour
+const madeUser1 = new MakeUser("Tim", 10); // args are sent to 'this', and we assign the filled object
+madeUser1.increment();
+console.log(madeUser1.score);
+// -> 11
+madeUser1.login();
+// -> You're logged in Tim
+
+/* 
+- Without the 'new' keyword, the object instance will point 'this' to the global object (in the browser that would be 'window') 
+- When creating this type of function that makes use of the 'new' keyword, it is convention to capitalise the first letter of the function!
+*/
+
+/* 
+Benefits:
+- Faster to write
+- Still typical practice in professional code
+
+Downsides:
+- 99% of devs have no idea how it works
+- We have to upper case the first letter of the function so we know it requires 'new' to work!
+*/
