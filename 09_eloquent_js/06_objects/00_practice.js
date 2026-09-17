@@ -89,7 +89,9 @@ This is the principle of 'encapsulation'.
 */
 
 /* 
-Generating objects using functions.
+EXAMPLES:
+
+1. Generating objects using functions.
 */
 
 function userCreator(name, score) {
@@ -108,3 +110,63 @@ console.log(user2);
 user2.increment();
 console.log(user2.score);
 // -> 3
+
+/* 
+Problems with this:
+- Each time we create a new user we make space in our computer's memory for all our data and functions.
+But our functions are just copies. Is there a better way?
+
+Benefits:
+- It's a simple solution, is it the most efficient in practice? Clearly not!
+
+2. Store functions in just one shared object and have the interpreter look up to that object to check if a function is there.
+- This type of feature is provided by the JS prototype chain.
+*/
+
+function userGen(name, score) {
+  const newUsr = Object.create(functionStore);
+  // bonds functionStore as the new 'empty' object's prototype (__proto__: functionStore)
+  newUsr.name = name;
+  newUsr.score = score;
+  return newUsr;
+}
+
+const functionStore = {
+  increment: function () {
+    // 'this' is always bound to the object that got created by running userGen
+    this.score++;
+  },
+  login: function () {
+    return `You're logged in ${this.name}!`;
+  },
+};
+
+const genUsr1 = userGen("Tom", 1);
+genUsr1.increment();
+console.log(genUsr1.score);
+// -> 2
+console.log(genUsr1.login());
+// -> You're logged in Tom!
+console.log(Object.getPrototypeOf(genUsr1));
+// -> { increment: [Function: increment], login: [Function: login] }
+console.log(genUsr1.__proto__);
+// -> { increment: [Function: increment], login: [Function: login] }
+
+/* 
+Problem:
+- No problems, we now have a more generalised efficient solution.
+
+3. Introducing the keyword that automates the hard work: 'new'
+*/
+
+const genUsr2 = new userGen("Phil", 3);
+
+/* 
+When we call the constructor function with 'new' in front, we automate 2 things:
+- Create a new user object
+- Return the new user object
+
+But now we need to adjust how we write the body of userGen - how can we:
+- Refer to the auto-created object?
+- Know where to put our single copies of functions?
+*/
