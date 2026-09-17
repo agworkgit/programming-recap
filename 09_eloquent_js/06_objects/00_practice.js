@@ -244,4 +244,11 @@ classUser.login();
 
 /* 
 So now, instead of storing the methods on a separate object that we use as the 'prototype' of our constructor function. They are all put together under one construct 'class', the constructor function holds the properties, and below it we define methods that perfrom actions on the (data) properties.
+
+Benefits:
+- Emerging as a new standard
+- Feels more like the style of other languanges (e.g. Python)
+
+Problems:
+- 99% of devs have no idea how it works
 */
