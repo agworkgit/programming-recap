@@ -38,7 +38,7 @@ This is a simple instance of a powerful idea. When a piece of code is written to
 This technique is called 'polymorphism'.
 Polymorphic code can work with values of different shapes, as long as they support the interface it expects.
 
-An example of a widely used interface is that of array-like objects that have a 'length' property holding a number and numbered properties for each of their elements. Both arrays an strings support this interface, as do various other objects.
+An example of a widely used interface is that of array-like objects that have a 'length' property holding a number and numbered properties for each of their elements. Both arrays and strings support this interface, as do various other objects.
 */
 
 Array.prototype.forEach.call({ length: 2, 0: "A", 1: "B" }, (elt) =>
