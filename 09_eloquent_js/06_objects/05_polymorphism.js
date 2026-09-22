@@ -1,7 +1,7 @@
 /* 
 POLYMORPHISM
 
-When you call the 'String' function (which coverts a value to a string) on an object, it will call the 'toString' method on that object to try to create a meaninful string from it.
+When you call the 'String' function (which converts a value to a string) on an object, it will call the 'toString' method on that object to try to create a meaninful string from it.
 Some of the standard prototypes define their own version of 'toString' so they can create a string that contains more useful information than "[object Object]". You can also do that yourself.
 */
 
@@ -22,7 +22,7 @@ let killerRabbit = new Rabbit("killer");
 
 Rabbit.prototype.toString = function () {
   // Specifies exactly the format in which the property is printed
-  // This applies only when printing this object!
+  // This applies only when printing this specific object!
   return `a ${this.type} rabbit`;
 };
 
