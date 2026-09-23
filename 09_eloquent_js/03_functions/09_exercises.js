@@ -39,7 +39,6 @@ log(isEven(3));
 // isEven -> false
 
 log(isEven(-1));
-import { lstat } from "node:fs";
 // isEven -> please enter a positive whole number
 
 /* Bean Counting */

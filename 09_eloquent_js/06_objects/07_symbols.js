@@ -10,7 +10,7 @@ But an object interface describing a hiking route could use 'length' to provide 
 
 An object trying to to be a route and array-like (maybe to enumerate its waypoints) is somewhat far-fetched, and this kind of problem isn't that common in practice. For things like the interator protocol, though, the language designers needed a type of property that 'really' doesn't conflict with others. So in 2015, 'symbols' were added to the language.
 
-Most properties, including all those we have seen so far, are named with strings. But it is also possible to use symbols as property names. Symbols are values created with the 'Symbol' function. Unlike strings, newly created symbols are unique -- you cannot create the same symbol twice.
+Most properties, including all those we have seen so far, are named with strings. But it is also possible to use symbols as property names. Symbols are values created with the 'Symbol' function. Unlike strings, newly created symbols are unique -- you cannot create the same symbol twice. 
 */
 
 let sym = Symbol("name");
