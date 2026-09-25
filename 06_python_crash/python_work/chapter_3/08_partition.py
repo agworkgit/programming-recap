@@ -9,6 +9,7 @@ print(unordered_list)
 
 # Practice implementation (naive solution)
 
+
 def practice_algo(list):
     pivot = list[0]
     smaller = []
@@ -52,6 +53,7 @@ def partition_algo(list):
 
 # Quick sort
 
+
 def quick_sort(list):
 
     if len(list) <= 1:
@@ -62,6 +64,7 @@ def quick_sort(list):
     right = list[j + 1:]
 
     return quick_sort(left) + [pivot] + quick_sort(right)
+
 
 sorted_list = quick_sort(unordered_list)
 print(sorted_list)
