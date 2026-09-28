@@ -1,4 +1,4 @@
-/* 
+/*
 I mentioned in Chapter 4 that a 'for/of' loop can loop over several kinds of data structures.
 This is another case of polymorphism -- such loops expect the data structure to expose a specific interface, which arrays and strings do.
 
@@ -17,7 +17,7 @@ let sym = Symbol("name");
 console.log(sym == Symbol("name"));
 // -> false
 
-/* 
+/*
 The string you pass to 'Symbol' is included when you covert it to a string and can make it easier to recognise a symbol when, for example, showing it in the console. But it has no meaning beyond that -- multiple symbols have the same name.
 
 Being both unique and usable as property names makes symbols suitable for defining interfaces that can peacefully live alongside other properties, no matter what their names are.
@@ -30,7 +30,7 @@ console.log([1, 2].length);
 console.log([1, 2][length]);
 // -> 0
 
-/* 
+/*
 It is possible to include symbol properties in object expressions and classes by using square brackets around the property name. That causes the expression between the brackets to be evaluated to produce the property name, analogous to the square bracket property access notation.
 */
 
