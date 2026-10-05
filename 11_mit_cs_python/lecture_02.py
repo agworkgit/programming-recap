@@ -286,3 +286,9 @@ elif ask < secret_num:
     print("Sorry, that number was too low.")
 else:
     print("Sorry, that number was too high.")
+
+# BIG IDEA
+## Debug early, debug often.
+## Write a little and test a little.
+## Don't write a complete program at once. It introduces too many errors.
+## Use the Python Tutor to step through code when you see something unexpected.
