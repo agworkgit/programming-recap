@@ -20,6 +20,7 @@ Hence, I am taking another pass at it, this time the aim is to dive in deeper an
 - Eloquent Javascript (Book)
 - Modern C++ For Absolute Beginners (Book)
 - Python Crash Course (Book)
+- MIT OpenCourseWare - Intro to CS and Programming Using Python
 - The Complete Developer (Book)
 - Think Like a Programmer (Book)
 - JavaScript - The Good Parts (Book)
