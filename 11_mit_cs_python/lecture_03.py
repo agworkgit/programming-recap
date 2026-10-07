@@ -99,3 +99,47 @@ for n in range(5):
 ## * step defaults to 1
 ## * E.g, for i in range(3,5):
 ## + step defaults to 1
+
+# YOU TRY IT
+# * What do these print?
+for i in range(1, 4, 1):
+    print(i)
+## 1,2,3
+
+for j in range(1, 4, 2):
+    print(j * 2)
+## 2,6
+
+for me in range(4, 0, -1):
+    print("$" * me)
+## start at me = 4 and descend by -1
+## $$$$,$$$,$$,$
+
+# RUNNING SUM
+# * mysum is a variable to store the running sum
+# * range(10) makes i be 0 then 1 then 2 ... then 9
+
+mysum = 0
+for i in range(10):
+    mysum += i
+print(mysum) # 45
+
+# FOR LOOPS and RANGE
+# * Factorial implemented with a for loop
+x = 4
+factorial = 1
+for i in range(1, x + 1, 1):
+    factorial *= i
+print(f'{x} factorial is {factorial}') # 4 factorial is 24
+
+# SUMMARY
+# * Looping mechanisms
+# * * while and for loops
+# * * Lots of syntax today, be sure to get lots of practice!
+# * While loops
+# * * Loop as long as a condition is True
+# * * Need to make sure you don't enter an infinite loop
+# * For loops
+# * * Can loop over ranges of numbers
+# * * Can loop over elements of a string
+# * * Will soon see many other things are easy to loop over
