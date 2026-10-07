@@ -300,4 +300,24 @@ print(x, '==', 10*0.1) # x == 1
 # = 1024 + 256 + 128 + 64 + 32 + 2 + 1 = 2^10 + 2^8 + 2^7 + 2^6 + 2^5 + 2^1 + 2^0
 # = 10111100011_2
 
+# CONVERTING DECIMAL INTEGER TO BINARY
+# * We input integers in decimal, computer needs to convert to binary
+# * Consider an example of:
+# * * x = 19_10 = 1*2^4 + 0*2^3 + 0*2^2 + 1*2^1 + 1*2^0 = 10011_2
+# * If we take remainder of x relative to 2 (x % 2), that gives us the last binary bit
+# * If we then integer divide x by 2 (x // 2), all the bits get shifted right
+# * * x // 2 = 1*2^3 + 0*2^2 + 0*2^1 + 1*2^0 = 1001_2
+# * Keep doing successive divisions, now remainder gets next bit, and so on
+# * Let's covert to binary form
+
+# DOING THIS in Python for POSITIVE NUMBERS
+num = 1507
+result = ''
+if num == 0:
+    result = '0'
+# record if the number mod 2 is 0 or 1, repeatedly divide the number by 2
+while num > 0:
+    result = str(num%2) + result
+    num = num // 2
+print(result) # 10111100011
 
