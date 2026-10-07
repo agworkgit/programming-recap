@@ -178,3 +178,126 @@ else:
     if neg_flag:
         print(f'Just checking..., did you mean, {-x}?')
 
+# BIG IDEA
+# * Guess-and-check can't test an infinite number of values
+# * You have to stop at some determined point!
+
+# YOU TRY IT!
+# * Re-write the guess-and-check with a for loop instead
+new_x = int(input('Enter a whole number to get its square root: '))
+new_flag = False
+found = 0
+if new_x < 0:
+    new_flag = True
+for index in range(new_x):
+    if index**2 == new_x:
+        found += index
+        print(f'The square root of {new_x} is {index}')
+if new_x != found**2:
+    print(f'{new_x} is not a perfect square')
+if new_flag == True:
+    print(f'Just checking..., did you mean, {-new_x}?')
+
+# BIG IDEA
+# * Booleans can be used as signals that something happened
+
+# WHILE loop or FOR loop?
+# * Already saw that code looks cleaner when iterating over sequences of values (for)
+# * * You don't set up the iteration yourself as with a while loop
+# * * Less likely to introduce errors
+# * Consider an example that uses a FOR loop and an explicit RANGE of values
+
+# GUESS-and-CHECK cube root (absolute cubes)
+cube = int(input("Enter an integer: "))
+for guess in range(abs(cube + 1)):
+    # Terminate search once you reached and passed the answer
+    if guess**3 >= abs(cube):
+        break
+if guess**3 != abs(cube):
+    print(f'{cube}, is not a perfect cube')
+else:
+    if cube < 0:
+        guess = -guess
+    print(f'Cube root of {cube} is {guess}')
+
+# ANOTHER EXAMPLE
+# * Remember those word problems from your childhood?
+# * For example:
+# * * Alyssa, Ben, and Cindy are selling tickets to a fundraiser
+# * * Ben sells 2 fewer than Alyssa
+# * * Cindy sells twice as much as Alyssa
+# * * 10 total tickets were sold by the three people
+# * * How many did Alyssa sell?
+# * Could solve this algebraically, but we can also use guess-and-check
+
+alyssa = 0
+total = 0
+while total < 10:
+    alyssa += 1
+    ben = alyssa - 2
+    cindy = alyssa * 2
+    total = alyssa + ben + cindy
+print(f'Alyssa sold {alyssa} tickets, Ben sold {ben} tickets, and Cindy sold {cindy} tickets') # 3, 1, 6
+
+# * Solved before solution, and the solution was incrementing 10 times for each person
+# * And with a for loop
+
+for alyssa in range(1001):
+    ben = max(alyssa - 20, 0)
+    cindy = alyssa * 2
+    if ben + cindy + alyssa == 1000:
+        print(f'Alyssa sold {alyssa}, Ben sold {ben}, and Cindy sold {cindy} tickets')
+
+# BIG IDEA
+# * You can apply computation to many different problems!
+
+# BINARY NUMBERS
+# * NUMBERS IN PYTHON
+# * * int: integer
+# * * float: reals, decimals
+
+x = 0
+for i in range(10):
+    x += 0.1
+print(x == 1) # False
+print(x, '==', 10*0.1) # x == 1
+
+# * This calculation results in a floating point arithmetic error, 0.99 instead of 1
+
+# BIG IDEA
+# * Operations on some floats introduce a very small error
+# * The small error can have a big effect if operations are done many times!
+
+# A CLOSER LOOK AT FLOATS
+# * Python (and every other programming language) uses "floating point" to approximate real numbers
+# * The term "floating point" refers to the way these numbers are stored in computer memory
+# * Approximation usually doesn't matter
+# * But it does for us! Let's see why
+
+# FLOATING POINT REPRESENTATION
+# * Depends on computer hardware, not programming language implementation
+# * Key things to understand:
+# * * Numbers (and everything else) are represented as a sequence of bits (0 or 1)
+# * * When we write numbers down, the notation uses base 10
+# * * * 0.1 stands for the rational number 1/10
+# * * This introduces cognitive dissonance - and it will influence how we write code
+
+# WHY BINARY?
+# HARDWARE IMPLEMENTATION
+# * Easy to implement in hardware - build components that can be in one of two states
+# * Computer hardware is built around methods that can efficiently store information as 0's or 1's and do arithmetic with this representation
+# * * a voltage is "high" or "low"
+# * * a magnet spin is "up" or "down"
+# * Fine for integer arithmetic, but what about numbers with fractional parts (floats)?
+
+# BINARY NUMBERS
+# * Base 10 representation of an integer
+# * * sum of powers of 10, scaled by integers from 0 to 9
+# 1507 = 1*10^3 + 5*10^2 + 0*10^1 + 7*10^0 = 1000 + 500 + 7
+# * Binary representation is the same idea in base 2
+# * * sum of powers of 2, scaled by integers from 0 to 1
+# 1507_10 = 1*2^10 + 1*2^8 + 1*2^7 + 1*2^6 + 1*2^5 + 1*2^1 + 1*2^0
+# = 1024 + 256 + 128 + 64 + 32 + 2 + 1 = 2^10 + 2^8 + 2^7 + 2^6 + 2^5 + 2^1 + 2^0
+# = 10111100011_2
+
+
