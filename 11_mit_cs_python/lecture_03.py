@@ -40,3 +40,62 @@ while answer != "left":
     if count == 2:
         print("Going in circles there...maybe try going somewhere else.")
 print("Congrats! You found your way out!")
+
+# Iternate through NUMS IN A SEQUENCE
+# * Set loop variable outside the while loop
+# * Test loop variable in condition
+# * Increment the loop variable inside the while loop
+
+## n = 0
+## while n < 5:
+##  print(n)
+##  n = n + 1
+
+# A COMMMON PATTERN
+# * Find 4! (factorial)
+# * i is our loop variable
+# * factorial keeps track of the product
+## x = 4
+## i = 1
+## factorial = 1
+## while i <= x:
+##      factorial *= i
+##      i += 1
+## print(f'{x} factorial is {factorial}')
+
+x = 4
+i = 1
+factorial = 1
+while i <= x:
+    factorial *= i
+    i += 1
+print(f'{x} factorial is {factorial}') # 4 (4 * 3 * 2 * 1) factorial is 24
+
+# FOR LOOPS
+# * shortcut with the for loop
+## for <variable> in <sequence of values>:
+##      <code>
+##      .....
+# * Each time through the loop, <variable> takes a value
+# * First time <variable> is the first value in the sequence
+# * Next, time <variable> gets the second value
+# * Etc., until <variable> runs out of values to iternate
+
+for n in range(5):
+    print(n)
+
+# * range, iterates up to but not including the num, starting at 0
+# * E.g. 0,1,2,3,4
+
+# range()
+# * Generates a SEQUENCE of ints, following a pattern
+# * range(start, stop, step)
+## * start: first int generated
+## * stop: controls last int generated (go up to but not including this int)
+# * A lot like what we saw for splicing
+# * Often omit start and step:
+## * E.g, for i in range(4)
+## * start defaults to 0
+## * step defaults to 1
+## * E.g, for i in range(3,5):
+## + step defaults to 1
