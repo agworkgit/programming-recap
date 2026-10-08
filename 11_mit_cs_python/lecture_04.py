@@ -37,31 +37,31 @@ even_nums1 = 0
 for i in range(5):
     if i % 2 == 0:
         even_nums1 += 1
-print(f'There are {even_nums1} even nums in the first range')
+print(f"There are {even_nums1} even nums in the first range")
 
 even_nums2 = 0
 for i in range(10):
     if i % 2 == 0:
         even_nums2 += 1
-print(f'There are {even_nums2} even nums in the second range')
+print(f"There are {even_nums2} even nums in the second range")
 
 even_nums3 = 0
-for i in range(2,9,3):
+for i in range(2, 9, 3):
     if i % 2 == 0:
         even_nums3 += 1
-print(f'There are {even_nums3} even nums in the third range')
+print(f"There are {even_nums3} even nums in the third range")
 
 even_nums4 = 0
-for i in range(-4,6,2):
+for i in range(-4, 6, 2):
     if i % 2 == 0:
         even_nums4 += 1
-print(f'There are {even_nums4} even nums in the fourth range')
+print(f"There are {even_nums4} even nums in the fourth range")
 
 even_nums5 = 0
-for i in range(5,6):
+for i in range(5, 6):
     if i % 2 == 0:
         even_nums5 += 1
-print(f'There are {even_nums5} even nums in the fifth range')
+print(f"There are {even_nums5} even nums in the fifth range")
 
 # STRINGS and LOOPS
 # * Code to check for letter i or u in a string
@@ -71,22 +71,22 @@ s = "demo loops - fruit loops"
 count_i = 0
 count_u = 0
 for index in range(len(s)):
-    if s[index] == 'i':
+    if s[index] == "i":
         count_i += 1
-    if s[index] == 'u':
+    if s[index] == "u":
         count_u += 1
-print(f'There are {count_i} i and {count_u} u')
+print(f"There are {count_i} i and {count_u} u")
 
 # * Iterates through characters of a string directly
 
 for char in s:
-    if char == 'i' or char == 'u':
-        print('There is an i or u')
+    if char == "i" or char == "u":
+        print("There is an i or u")
 
 # Iterates through characters of a string directly (most "pythonic way")
 
 for char in s:
-    if char in 'iu':
+    if char in "iu":
         print("There is an i or u in s")
 
 # BIG IDEA
@@ -94,34 +94,34 @@ for char in s:
 
 # ROBOT CHEERLEADERS
 
-an_letters = 'aefhilmnorsxAEFHILMNORSX'
-word = input('I will cheer for you! Enter a word: ')
+an_letters = "aefhilmnorsxAEFHILMNORSX"
+word = input("I will cheer for you! Enter a word: ")
 times = int(input("Enthusiasm level (1-10): "))
 
 for c in word:
     if c in an_letters:
-        print(f'Give me an {c}: {c}')
+        print(f"Give me an {c}: {c}")
     else:
-        print(f'Give me a {c}: {c}')
+        print(f"Give me a {c}: {c}")
 
-print('What\'s that spell?')
+print("What's that spell?")
 
 for i in range(times):
-    print(word, '!!!')
+    print(word, "!!!")
 
 # YOU TRY IT
 # * Assume you are given a string of lowercase letters in a variable
 # * Count how many unique letters there are in the string
 # * For example, if s = 'abca' then your code prints 3
 
-some_string = 'aabbccdd'
+some_string = "aabbccdd"
 count = 0
-seen = ''
+seen = ""
 for char in some_string:
     if char not in seen:
         seen += char
         count += 1
-print(f'There are {count} unique chars in the string')
+print(f"There are {count} unique chars in the string")
 
 # * Solved without the hint
 
@@ -172,11 +172,11 @@ if x < 0:
 while guess**2 < x:
     guess = guess + 1
 if guess**2 == x:
-    print(f'Square root of {x} is {guess}')
+    print(f"Square root of {x} is {guess}")
 else:
-    print(f'{x} is not a perfect square')
+    print(f"{x} is not a perfect square")
     if neg_flag:
-        print(f'Just checking..., did you mean, {-x}?')
+        print(f"Just checking..., did you mean, {-x}?")
 
 # BIG IDEA
 # * Guess-and-check can't test an infinite number of values
@@ -184,7 +184,7 @@ else:
 
 # YOU TRY IT!
 # * Re-write the guess-and-check with a for loop instead
-new_x = int(input('Enter a whole number to get its square root: '))
+new_x = int(input("Enter a whole number to get its square root: "))
 new_flag = False
 found = 0
 if new_x < 0:
@@ -192,11 +192,11 @@ if new_x < 0:
 for index in range(new_x):
     if index**2 == new_x:
         found += index
-        print(f'The square root of {new_x} is {index}')
+        print(f"The square root of {new_x} is {index}")
 if new_x != found**2:
-    print(f'{new_x} is not a perfect square')
+    print(f"{new_x} is not a perfect square")
 if new_flag == True:
-    print(f'Just checking..., did you mean, {-new_x}?')
+    print(f"Just checking..., did you mean, {-new_x}?")
 
 # BIG IDEA
 # * Booleans can be used as signals that something happened
@@ -214,11 +214,11 @@ for guess in range(abs(cube + 1)):
     if guess**3 >= abs(cube):
         break
 if guess**3 != abs(cube):
-    print(f'{cube}, is not a perfect cube')
+    print(f"{cube}, is not a perfect cube")
 else:
     if cube < 0:
         guess = -guess
-    print(f'Cube root of {cube} is {guess}')
+    print(f"Cube root of {cube} is {guess}")
 
 # ANOTHER EXAMPLE
 # * Remember those word problems from your childhood?
@@ -237,7 +237,9 @@ while total < 10:
     ben = alyssa - 2
     cindy = alyssa * 2
     total = alyssa + ben + cindy
-print(f'Alyssa sold {alyssa} tickets, Ben sold {ben} tickets, and Cindy sold {cindy} tickets') # 3, 1, 6
+print(
+    f"Alyssa sold {alyssa} tickets, Ben sold {ben} tickets, and Cindy sold {cindy} tickets"
+)  # 3, 1, 6
 
 # * Solved before solution, and the solution was incrementing 10 times for each person
 # * And with a for loop
@@ -246,7 +248,7 @@ for alyssa in range(1001):
     ben = max(alyssa - 20, 0)
     cindy = alyssa * 2
     if ben + cindy + alyssa == 1000:
-        print(f'Alyssa sold {alyssa}, Ben sold {ben}, and Cindy sold {cindy} tickets')
+        print(f"Alyssa sold {alyssa}, Ben sold {ben}, and Cindy sold {cindy} tickets")
 
 # BIG IDEA
 # * You can apply computation to many different problems!
@@ -259,8 +261,8 @@ for alyssa in range(1001):
 x = 0
 for i in range(10):
     x += 0.1
-print(x == 1) # False
-print(x, '==', 10*0.1) # x == 1
+print(x == 1)  # False
+print(x, "==", 10 * 0.1)  # x == 1
 
 # * This calculation results in a floating point arithmetic error, 0.99 instead of 1
 
@@ -310,14 +312,30 @@ print(x, '==', 10*0.1) # x == 1
 # * Keep doing successive divisions, now remainder gets next bit, and so on
 # * Let's covert to binary form
 
-# DOING THIS in Python for POSITIVE NUMBERS
+# DOING this in Python for POSITIVE NUMBERS
 num = 1507
-result = ''
+result = ""
 if num == 0:
-    result = '0'
+    result = "0"
 # record if the number mod 2 is 0 or 1, repeatedly divide the number by 2
 while num > 0:
-    result = str(num%2) + result
+    result = str(num % 2) + result
     num = num // 2
-print(result) # 10111100011
+print(result)  # 10111100011
 
+# DOING this in PYTHON and HANDLING NEGATIVE NUMS
+num = int(input("Type a whole number you want converted to binary: "))
+if num < 0:
+    is_neg = True
+    num = abs(num)
+else:
+    is_neg = False
+result = ""
+if num == 0:
+    result = "0"
+while num > 0:
+    result = str(num % 2) + result
+    num = num // 2
+if is_neg:
+    result = "-" + result
+print(result)
