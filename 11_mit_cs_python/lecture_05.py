@@ -73,3 +73,10 @@ print(f"The binary representation of the decimal {str(x)} is {str(result)}")
 # * * (1,-1) -> 1*2^-1 -> 0.1_2 -> 0.5_10
 # * * (125,-2) -> 125*2^-2 -> 11111.01_2 -> 31.25_10
 # * 125 is 1111101 then move the decimal point left by 2
+
+# USE A FINITE SET OF BITS TO REPRESENT A POTENTIALLY INFINITE SET OF BITS
+# * The maximum number of significant digits governs the precision with which numbers can be represented
+# * Most modern computers use 32BITS to represent significant digits
+# * If a number is represented with more than 32 bits in binary, the number will be rounded
+# * * Error will be at the 32nd bit
+# * * Error will only be on order of 2*10^-10
